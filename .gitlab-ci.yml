@@ -3,6 +3,7 @@ build:
   stage: build
   script:
     - mvn clean test
+    
     - mvn sonar:sonar  -Dsonar.projectKey=coverage  -Dsonar.host.url=http://34.219.94.74:9000  -Dsonar.login=80be7644a57f67cc85794fc092b9d76409fd8987
   artifacts:
     paths:
