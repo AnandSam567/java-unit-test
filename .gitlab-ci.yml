@@ -8,6 +8,8 @@ build:
   artifacts:
     paths:
       - target/site/jacoco/index.html
+      - target/surefire-reports/TEST-*.xml
     reports:
       junit:
         - target/site/jacoco/index.html
+        - target/surefire-reports/TEST-*.xml
