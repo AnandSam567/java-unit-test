@@ -15,8 +15,8 @@ build:
       junit:
         - target/site/jacoco/index.html
         - target/surefire-reports/TEST-*.xml
-    only:
+  only:
       changes:
         - README.md
         - pom.xml
-        - src/*
+        - src/*    
