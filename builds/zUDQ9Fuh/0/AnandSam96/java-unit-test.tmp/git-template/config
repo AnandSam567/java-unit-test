@@ -1,6 +1,0 @@
-[init]
-	defaultBranch = none
-[fetch]
-	recurseSubmodules = false
-[http "https://gitlab.com"]
-	sslCAInfo = /home/sakhaglobal/Desktop/dir2/unittest/java-unit-test/builds/zUDQ9Fuh/0/AnandSam96/java-unit-test.tmp/CI_SERVER_TLS_CA_FILE
