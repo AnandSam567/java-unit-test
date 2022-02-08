@@ -1,1 +1,0 @@
-Jacoco Coverage Total: 100%
