@@ -19,9 +19,3 @@ jobs:
         with:
           name: target
           path: target
-      - uses: actions/deploy-pages@v1
-        with:
-          token: ${{ secret.Token }}
-          timeout: 600000
-          error_count: 10
-          reporting_interval: 1000
