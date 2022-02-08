@@ -14,4 +14,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: test with Maven
-        run: mvn test
+        run: mvn clean test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: target
+          path: target
