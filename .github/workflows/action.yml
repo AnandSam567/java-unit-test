@@ -21,7 +21,7 @@ jobs:
           path: target
       - uses: actions/deploy-pages@v1
         with:
-          token: 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
+          token: ${{secret.Token}}
           timeout: 600000
           error_count: 10
           reporting_interval: 1000
