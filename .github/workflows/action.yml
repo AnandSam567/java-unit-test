@@ -11,15 +11,15 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+    - run:  mvn clean verify sonar:sonar \
+            -Dsonar.projectKey=action-analysis \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=7b92099c0088e5620a22a339cbc486e5b81665fd
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      with:
-        projectBaseDir: .
-        args: >
-          mvn clean verify sonar:sonar \
-          -Dsonar.projectKey=action-analysis \
-          -Dsonar.host.url=http://localhost:9000 \
-          -Dsonar.login=7b92099c0088e5620a22a339cbc486e5b81665fd
+        
+        
+        
