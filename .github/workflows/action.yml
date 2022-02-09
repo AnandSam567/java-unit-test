@@ -3,31 +3,14 @@ name: Java CI
 on: [push]
 
 jobs:
-  test:
+  sonarQubeTrigger:
+    name: SonarQube Trigger
     runs-on: self-hosted
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: test with Maven
-        run: mvn clean test
-      - uses: actions/upload-artifact@v2
-        with:
-          name: target
-          path: target/site/jacoco
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.3
-        with:
-          branch: gh-pages
-          folder: target/site/jacoco
-      - name: SonarQube Trigger
-        uses: kitabisa/sonarqube-action@v1.1.0
-        with:
-          host: ${{ secrets.SONARQUBE_HOST }}
-          login: ${{ secrets.SONARQUBE_TOKEN }}
-          projectKey: ${{ secrets.SONARQUBE_PROJECT_KEY }}
-          
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.1.0
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
+        projectKey: ${{ secrets.SONARQUBE_PROJECT_KEY }}
