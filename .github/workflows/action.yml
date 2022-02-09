@@ -25,8 +25,6 @@ jobs:
           branch: gh-pages
           folder: target/site/jacoco
       - name: SonarQube Trigger
-      - uses: actions/checkout@master
-      - name: SonarQube Scan
         uses: kitabisa/sonarqube-action@v1.1.0
         with:
           host: ${{ secrets.SONARQUBE_HOST }}
