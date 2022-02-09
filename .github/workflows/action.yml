@@ -18,7 +18,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: target
-          path: target
+          path: target/site/jacoco/index.html
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
