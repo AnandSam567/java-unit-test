@@ -4,13 +4,9 @@ on: [push]
 
 jobs:
   ping:
-    name: ping
-      runs-on: self hosted
-        steps:
-          - name: Run build script
-            uses: actions/checkout@v2
-            run: chmod u+x ping.sh && ./ping.sh > output.txt && cat output.txt 
-            shell: bash
-     
-        
-        
+    runs-on: self-hosted
+    steps:
+     - name: ping
+       uses: actions/checkout@v2
+       run: chmod u+x ping.sh && ./ping.sh > output.txt && cat output.txt 
+       shell: bash
