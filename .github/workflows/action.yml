@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: ping  
-        run: chmod u+x ping.sh && ./ping.sh > output.txt && cat output.txt 
+        run: ping -c 1 localhost
         shell: bash
