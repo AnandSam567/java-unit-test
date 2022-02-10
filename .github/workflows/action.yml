@@ -18,3 +18,9 @@ jobs:
         with:
           name: target
           path: target/site/jacoco
+      - name: code coverage
+        run: | 
+          cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' 
+          cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' | sed 's/<.*>/ /; s/Total/Jacoco Coverage Total:/' > coverage.txt 
+          cat coverage.txt
+        
