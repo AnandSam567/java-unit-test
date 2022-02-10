@@ -3,24 +3,13 @@ name: Java CI
 on: [push]
 
 jobs:
-
-  sonarqube:
-    runs-on: self-hosted
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-    - run:  mvn clean test && mvn install   
-    - run:  mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=action-analysis \
-            -Dsonar.host.url=http://0.0.0.0:9000 \
-            -Dsonar.login=7b92099c0088e5620a22a339cbc486e5b81665fd
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        
+    ping:
+        runs-on: self hosted
+        steps:
+        - uses: actions@checkout@v1
+        - run: chmod u+x ping.sh && ./ping.sh
+        - shell: bash    
+  
+     
         
         
