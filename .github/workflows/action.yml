@@ -3,9 +3,8 @@ name: Java CI
 on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -19,8 +18,16 @@ jobs:
         with:
           name: target
           path: target/site/jacoco
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.3
-        with:
-          branch: gh-pages
-          folder: target/site/jacoco
+      - name: code-coverage
+        run: | 
+          cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' 
+          cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' | sed 's/<.*>/ /; s/Total/Jacoco Coverage Total:/' > coverage.txt 
+          cat coverage.txt
+      - name: code coverage violation
+        run: |
+          sed 's/.*\(....\)/\1/' < coverage.txt > coverage_in_percentage.txt
+          coverage=$(cut --complement -c4 coverage_in_percentage.txt)
+          echo $coverage
+          (if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi);
+      - name: sonarqube analysis
+        run: mvn clean verify sonar:sonar -Dsonar.projectKey=action-analysis -Dsonar.host.url=http://localhost:9000 -Dsonar.login=7b92099c0088e5620a22a339cbc486e5b81665fd

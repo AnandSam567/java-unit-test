@@ -22,12 +22,12 @@ public class TestMessageBuilder {
 
     }
 
-    /*@Test
+    @Test
     public void testNameNull() {
 
         MessageBuilder obj = new MessageBuilder();
         assertEquals("Please provide a name!", obj.getMessage(null));
 
-    }*/
+    }
 
 }
