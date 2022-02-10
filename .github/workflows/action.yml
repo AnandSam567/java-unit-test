@@ -6,7 +6,7 @@ jobs:
     ping:
         runs-on: self hosted
         steps:
-        - uses: actions@checkout@v2
+        - uses: actions/checkout@v2
           with:
             fetch-depth: 0
         - run: chmod u+x ping.sh && ./ping.sh > output.txt
