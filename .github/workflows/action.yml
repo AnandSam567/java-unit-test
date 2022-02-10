@@ -29,3 +29,8 @@ jobs:
           coverage=$(cut --complement -c4 coverage_in_percentage.txt)
           echo $coverage
           (if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi);
+      - name: sonarqube analysis
+        run: mvn clean verify sonar:sonar \
+              -Dsonar.projectKey=action-analysis \
+              -Dsonar.host.url=http://localhost:9000 \
+              -Dsonar.login=7b92099c0088e5620a22a339cbc486e5b81665fd
