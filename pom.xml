@@ -24,6 +24,13 @@
         <java.version>1.8</java.version>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
     </properties>
+         
+    <pluginRepositories>
+      <pluginRepository>
+          <id>maven2</id>
+          <url>https://repo.maven.apache.org/maven2/</url>
+      </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
 
