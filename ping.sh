@@ -1,4 +1,4 @@
-if [ "`ping -c 1 some_ip_here`" ]
+if [ "`ping -c 1 localhost`" ]
 then
   echo 1
 else
