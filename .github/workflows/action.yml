@@ -23,4 +23,9 @@ jobs:
           cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' 
           cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' | sed 's/<.*>/ /; s/Total/Jacoco Coverage Total:/' > coverage.txt 
           cat coverage.txt
-        
+      - name: code coverage violation
+        run: |
+          sed 's/.*\(....\)/\1/' < coverage.txt > coverage_in_percentage.txt
+          coverage=$(cut --complement -c4 coverage_in_percentage.txt)
+          echo $coverage
+          (if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi);
