@@ -3,15 +3,14 @@ name: Java CI
 on: [push]
 
 jobs:
-    ping:
-        name: ping
-        runs-on: self hosted
+  ping:
+    name: ping
+      runs-on: self hosted
         steps:
-            -   uses: actions/checkout@v2
-            -   shell: bash
-            -   run: chmod u+x ping.sh && ./ping.sh > output.txt
-            -   run: cat output.txt   
-  
+          - name: Run build script
+            uses: actions/checkout@v2
+            run: chmod u+x ping.sh && ./ping.sh > output.txt && cat output.txt 
+            shell: bash
      
         
         
