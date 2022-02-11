@@ -1,4 +1,4 @@
-name: Java Unit Test
+name: Java-Unit-Test
 
 on:
   push:
