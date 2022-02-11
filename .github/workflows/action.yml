@@ -62,13 +62,9 @@ jobs:
     needs: test
     runs-on: self-hosted
     steps:
-      - name: code coverage violation
-        uses: actions/download-artifact@v2
-        with:
-          name: coverage.txt
-          path: coverage.txt
       - name: coverage violation
         run: |
+          cat coverage.txt
           sed 's/.*\(....\)/\1/' < coverage.txt > coverage_in_percentage.txt
           coverage=$(cut --complement -c4 coverage_in_percentage.txt)
           echo $coverage
