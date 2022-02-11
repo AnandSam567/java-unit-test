@@ -35,9 +35,10 @@ jobs:
           cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' | sed 's/<.*>/ /; s/Total/Jacoco Coverage Total:/' > coverage.txt 
           cat coverage.txt
       - name: Cache 
-        uses: actions/cache@v2
+        uses: actions/upload-artifact@v2
         with:
-          path: coverage.txt
+          name: coverage.txt
+          path: ~/coverage.txt
       - name: upload jacoco
         uses: actions/upload-artifact@v2
         with:
