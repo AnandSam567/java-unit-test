@@ -86,8 +86,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Package
-        run: if [ "$coverage" -lt 160 ]; then exit 1 ; else exit 0; fi;
-        run:  mvn package
+        run: if [ "$coverage" -lt 160 ]; then exit 1 ; else exit 0; fi; && mvn package
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
