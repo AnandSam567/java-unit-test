@@ -34,7 +34,7 @@ jobs:
         run: | 
           cat target/site/jacoco/index.html | grep -o 'Total[^%]*%' | sed 's/<.*>/ /; s/Total/Jacoco Coverage Total:/' > coverage.txt 
           cat coverage.txt
-      - name: Cache 
+      - name: Upload coverage.txt 
         uses: actions/upload-artifact@v2
         with:
           name: coverage.txt
@@ -62,6 +62,11 @@ jobs:
     needs: test
     runs-on: self-hosted
     steps:
+      - name: code coverage violation
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage.txt
+          path: coverage.txt
       - name: coverage violation
         run: |
           sed 's/.*\(....\)/\1/' < coverage.txt > coverage_in_percentage.txt
@@ -84,12 +89,10 @@ jobs:
     needs: code-coverage-violation
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - name: Package
-        run: |
-          echo $coverage
-          if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi;
-          mvn clean package
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Package 
+        run: mvn clean package
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
