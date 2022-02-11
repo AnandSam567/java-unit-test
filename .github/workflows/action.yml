@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: targetJ
-          path: targetJ/site/jacoco
+          path: target/site/jacoco
   Publish:
     needs: test
     runs-on: self-hosted
@@ -52,12 +52,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: targetJ
-          path: targetJ/site/jacoco
+          path: target/site/jacoco
       - name: Publish
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           branch: gh-pages
-          folder: targetJ/site/jacoco    
+          folder: target/site/jacoco    
   code-coverage-violation:
     needs: test
     runs-on: self-hosted
