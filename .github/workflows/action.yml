@@ -51,7 +51,7 @@ jobs:
       - name: Artifact jacoco 
         uses: actions/download-artifact@v2
         with:
-          name: target
+          name: targetJ
           path: target/site/jacoco
       - name: Publish
         uses: JamesIves/github-pages-deploy-action@v4.2.3
@@ -67,7 +67,7 @@ jobs:
           sed 's/.*\(....\)/\1/' < coverage.txt > coverage_in_percentage.txt
           coverage=$(cut --complement -c4 coverage_in_percentage.txt)
           echo $coverage
-          if [ "$coverage" -lt 160 ]; then exit 1 ; else exit 0; fi;
+          if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi;
   SonarQube-CA:
     needs: code-coverage-violation
     runs-on: self-hosted
@@ -86,7 +86,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Package
-        run: if [ "$coverage" -lt 160 ]; then exit 1 ; else exit 0; fi; | mvn package
+        run: |
+          echo $coverage
+          if [ "$coverage" -lt 60 ]; then exit 1 ; else exit 0; fi;
+          mvn package
       - name: Upload package
         uses: actions/upload-artifact@v2
         with:
